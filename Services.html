@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Home" content="width=device-width, initial-scale=1.0">
+    <meta content="Pesan Makanan" name="description"/>
+    <meta content="Makan Makan" name="keywords" />
+    <meta content="dtok" name="author" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="foto/icon.png" type="image/x-icon">
+    <title>Service</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-bar">
+            <h1 class="logo"><img src="foto/icon.png"></h1>
+            <ul class="slider-menu">
+                <a href="index.html">Home</a>
+                <a href="Menu.html">Menu</a>
+                <a href="Services.html">pesanan</a>
+                <a href="aboutus.html">About us</a>
+                <a href="contactus.html">contact us</a>
+                
+            </ul>
+        </div>
+    </div>
+    <section class="home" id="home">
+        <div class="checkout">
+            <div class="panel-check">
+                <h4>Order Ke Pesan WhatsApp</h4>
+                <div class="">
+                    <div class="panel-heading">
+                        Checkout Ke WhatsApp
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>Nama</label><br>
+                            <input type="text" name="name" class="form-control" placeholder="Nama" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label><br>
+                            <input type="email" name="email" class="form-control" placeholder="Email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Kontak / WhatsApp</label><br>
+                            <input type="text" name="phone" class="form-control" placeholder="Nomor Kontak / WhatsApp" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat</label><br>
+                            <input type="text" name="address" class="form-control" placeholder="address" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Produk</label><br>
+                            <select name="product" class="form-control" id="product">
+                                <option value="">-- Pilih Produk --</option>
+                                <option value="produk_1">Nasi Bakar ayam</option>
+                                <option value="produk_2">Nasi Bakar Tuna</option>
+                                <option value="produk_3">Nasi Bakar Cumi</option>
+                                <option value="produk_4">Opor Ayam</option>
+                                <option value="produk_5">Rica-rica Ayam</option>
+                                <option value="Dll">DLL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pesan Berapa</label><br>
+                            <input type="number" name="Pesan Berapa" class="form-control" placeholder="Pesanan" id="Pesanan">
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label><br>
+                            <textarea name="description" class="form-control" rows="3" id="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success send">Pesan via WhatsApp</button>
+                        </div>
+    
+                        <div id="text-info"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).on('click','.send', function(){
+                /* Inputan Formulir */
+                var input_name 			= $("#name").val(),
+                    input_email 		= $("#email").val(),
+                    input_phone 		= $("#phone").val(),
+                    input_address	    = $("#address").val(),
+                    input_product 		= $("#product").val(),
+                    input_pesanan 		= $("#pesanan").val(),
+                    input_description 	= $("#description").val();
+    
+                /* Pengaturan Whatsapp */
+                var walink 		= 'https://wa.me/6281228257612',
+                    phone 		= '6281228257612',
+                    text 		= 'Halo saya ingin memesan ',
+                    text_yes	= 'Pesanan Anda berhasil terkirim.',
+                    text_no 	= 'Isilah formulir terlebih dahulu.';
+    
+                /* Smartphone Support */
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    var walink = 'https://wa.me/6281228257612';
+                }
+    
+                if(input_name != "" && input_phone != "" && input_product != ""){
+                    /* Whatsapp URL */
+                    var checkout_whatsapp = walink + '?phone=' + phone + '&text=' + text + '%0A%0A' +
+                        '*Nama* : ' + input_name + '%0A' +
+                        '*Alamat Email* : ' + input_email + '%0A' +
+                        '*Nomor Kontak / Whatsapp* : ' + input_phone + '%0A' +
+                        '*address* : ' + input_address + '%0A' +
+                        '*Produk* : ' + input_product + '%0A' +
+                        '*pesanan* : ' + input_pesanan + '%0A' +
+                        '*Catatan* : ' + input_description + '%0A';
+    
+                    /* Whatsapp Window Open */
+                    window.open(checkout_whatsapp,'_blank');
+                    document.getElementById("text-info").innerHTML = '<div class="alert alert-success">'+text_yes+'</div>';
+                } else {
+                    document.getElementById("text-info").innerHTML = '<div class="alert alert-danger">'+text_no+'</div>';
+                }
+            });
+        </script>
+    
+    
+        </div>
+    </section>
+
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="foto/icon.png" alt="" style="width: 50px; ; height: 50px;">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> Jl. parangkusumo III No.8,Tlogosari Kulon, Kec. Pedurungan, Kota Semarang, Jawa Tengah 50196</p>
+            <p><strong>Phone:</strong> 081228257612</p>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>Pesanan</h4>
+            <a href="Services.html">pesanan</a>
+        </div>
+
+        <div class="col payment">
+            <h4>Payment</h4>
+            <p>Secured Payment Gateways</p>
+            <img src="foto/pay.png" alt="" style="width: 250px; ; height: 50px;">
+        </div>
+
+        <div class="copyright">
+            <p>© 2022, Udinus Tugas Akhir</p>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
